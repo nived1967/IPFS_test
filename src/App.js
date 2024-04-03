@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import UploadFile from './UploadFile';
+import DownloadFile from './DownloadFile';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [hashValue, setHashValue] = useState(null);
+
+    const handleFileUpload = (hashValue) => {
+        setHashValue(hashValue);
+    };
+
+    return (
+        <div>
+            <h1>Upload and Download File</h1>
+            <UploadFile onFileUpload={handleFileUpload} />
+            {hashValue && <DownloadFile hashValue={hashValue} />}
+        </div>
+    );
+};
 
 export default App;
